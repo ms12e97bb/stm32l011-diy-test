@@ -1,0 +1,14 @@
+# Eclipse specific files
+.classpath
+.settings/
+
+# Build output directories
+Debug/
+
+# IDE specific files
+*.iml
+
+# Temporary files
+*.log
+*.tmp
+*.bak
