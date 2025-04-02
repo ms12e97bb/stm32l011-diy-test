@@ -17,13 +17,16 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
+extern "C" {
 #include <string.h>
 #include <stdlib.h>
 #include "main.h"
+}
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "logger.h"
+#include "i2c_test.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -64,7 +67,6 @@ static void MX_USART2_UART_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
 
 
 /* USER CODE END 0 */
@@ -112,16 +114,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_Delay(1000);
-
-	  static int n = 0;
-	  char data[10] = {0};
-	  itoa(n++, data, 10);
-	  int i = strlen(data);
-	  data[i + 0] = '\n';
-	  data[i + 1] = '\0';
-
-	  HAL_UART_Transmit(&huart2, (uint8_t*)data, strlen(data), HAL_MAX_DELAY);
+	HAL_Delay(1000);
+    i2c_test();
   }
   /* USER CODE END 3 */
 }
