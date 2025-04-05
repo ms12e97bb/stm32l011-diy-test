@@ -27,6 +27,7 @@ extern "C" {
 /* USER CODE BEGIN Includes */
 #include "logger.h"
 #include "i2c_test.h"
+#include "adc_test.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -115,7 +116,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	HAL_Delay(1000);
-    i2c_test();
+    adc_test();
   }
   /* USER CODE END 3 */
 }

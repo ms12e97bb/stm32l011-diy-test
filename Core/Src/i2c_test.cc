@@ -4,8 +4,10 @@
 
 extern I2C_HandleTypeDef hi2c1;
 
+namespace {
+
 template <int N>
-int read_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t (&data)[N]) {
+[[maybe_unused]] int read_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t (&data)[N]) {
 	const uint8_t mem_addr_h = (mem_addr >> 8) && 0xff;
 	const uint8_t mem_addr_l = (mem_addr >> 0) && 0xff;
     uint8_t wbuf[] = { mem_addr_h, mem_addr_l };
@@ -18,7 +20,7 @@ int read_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t (&data)[N]) {
     return HAL_I2C_Master_Receive(&hi2c1, device_addr, data, N, HAL_MAX_DELAY);
 }
 
-int read_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t *data, int size) {
+[[maybe_unused]] int read_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t *data, int size) {
 	const uint8_t mem_addr_h = (mem_addr >> 8) && 0xff;
 	const uint8_t mem_addr_l = (mem_addr >> 0) && 0xff;
     uint8_t wbuf[] = { mem_addr_h, mem_addr_l };
@@ -32,7 +34,7 @@ int read_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t *data, int size)
 }
 
 template <int N>
-int write_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t (&data)[N]) {
+[[maybe_unused]] int write_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t (&data)[N]) {
 	const uint8_t mem_addr_h = (mem_addr >> 8) && 0xff;
 	const uint8_t mem_addr_l = (mem_addr >> 0) && 0xff;
 
@@ -41,7 +43,7 @@ int write_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t (&data)[N]) {
     return HAL_I2C_Master_Transmit(&hi2c1, device_addr, wbuf, sizeof(wbuf), HAL_MAX_DELAY);
 }
 
-int write_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t *data, int size, uint8_t *buf) {
+[[maybe_unused]] int write_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t *data, int size, uint8_t *buf) {
 	const uint8_t mem_addr_h = (mem_addr >> 8) && 0xff;
 	const uint8_t mem_addr_l = (mem_addr >> 0) && 0xff;
 
@@ -51,11 +53,11 @@ int write_24LC64(uint8_t device_addr, uint16_t mem_addr, uint8_t *data, int size
     return HAL_I2C_Master_Transmit(&hi2c1, device_addr, buf, size+2, HAL_MAX_DELAY);
 }
 
-int write_24LC64(uint8_t device_addr, uint8_t *data, int size) {
+[[maybe_unused]] int write_24LC64(uint8_t device_addr, uint8_t *data, int size) {
     return HAL_I2C_Master_Transmit(&hi2c1, device_addr, data, size, HAL_MAX_DELAY);
 }
 
-void test0() {
+[[maybe_unused]] void test0() {
     uint8_t wbuf[] = {
 		0x00,0x01,0x02,0x03,
 		0x04,0x05,0x06,0x07,
@@ -71,7 +73,7 @@ void test0() {
     }
 }
 
-void test1() {
+[[maybe_unused]] void test1() {
     uint8_t rbuf[10];
     int ret = HAL_OK;
 	
@@ -93,7 +95,7 @@ void test1() {
     logger("rbuf[9]=", rbuf[9]);
 }
 
-void test2() {
+[[maybe_unused]] void test2() {
     uint8_t wbuf[] = {
 		0x00,0x01,0x02,0x03,
 		0x04,0x05,0x06,0x07,
@@ -113,7 +115,7 @@ void test2() {
     }
 }
 
-void test3() {
+[[maybe_unused]] void test3() {
     uint8_t rbuf[10];
     int ret = HAL_OK;
 
@@ -134,6 +136,7 @@ void test3() {
     logger("rbuf[8]=", rbuf[8]);
     logger("rbuf[9]=", rbuf[9]);
 }
+} /*namespace*/
 
 void i2c_test() {
 	test3();
