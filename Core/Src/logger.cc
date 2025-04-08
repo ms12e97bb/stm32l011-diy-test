@@ -11,9 +11,10 @@ void logger(const char* str) {
 	buf[0] = '\0';
 	strcat(buf, str);
 
-	const int i = strlen(buf);
-	buf[i + 0] = '\n';
-	buf[i + 1] = '\0';
+	int i = strlen(buf);
+	buf[i] = '\r', i++;
+	buf[i] = '\n', i++;
+	buf[i] = '\0';
 	HAL_UART_Transmit(&huart2, (uint8_t*)buf, strlen(buf), HAL_MAX_DELAY);
 }
 
@@ -23,9 +24,11 @@ void logger(const char* str, int a) {
 	buf[0] = '\0';
 	strcat(buf, str);
 	strcat(buf, itoa(a, num, 16));
-	const int i = strlen(buf);
-	buf[i + 0] = '\n';
-	buf[i + 1] = '\0';
+
+	int i = strlen(buf);
+	buf[i] = '\r', i++;
+	buf[i] = '\n', i++;
+	buf[i] = '\0';
 	HAL_UART_Transmit(&huart2, (uint8_t*)buf, strlen(buf), HAL_MAX_DELAY);
 }
 
@@ -38,9 +41,10 @@ void logger(const char* str, int a, int b) {
 	strcat(buf, " ");
 	strcat(buf, itoa(b, num, 16));
 
-	const int i = strlen(buf);
-	buf[i + 0] = '\n';
-	buf[i + 1] = '\0';
+	int i = strlen(buf);
+	buf[i] = '\r', i++;
+	buf[i] = '\n', i++;
+	buf[i] = '\0';
 	HAL_UART_Transmit(&huart2, (uint8_t*)buf, strlen(buf), HAL_MAX_DELAY);
 }
 
@@ -55,8 +59,9 @@ void logger(const char* str, int a, int b, int c) {
 	strcat(buf, " ");
 	strcat(buf, itoa(c, num, 16));
 
-	const int i = strlen(buf);
-	buf[i + 0] = '\n';
-	buf[i + 1] = '\0';
+	int i = strlen(buf);
+	buf[i] = '\r', i++;
+	buf[i] = '\n', i++;
+	buf[i] = '\0';
 	HAL_UART_Transmit(&huart2, (uint8_t*)buf, strlen(buf), HAL_MAX_DELAY);
 }

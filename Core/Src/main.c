@@ -110,7 +110,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	HAL_Delay(1000);
-	//adc_test();
+	adc_test();
   }
   /* USER CODE END 3 */
 }
