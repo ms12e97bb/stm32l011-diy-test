@@ -138,7 +138,7 @@ template <int N>
 }
 } /*namespace*/
 
-void i2c_test() {
+void i2c_master_test() {
 	test3();
 }
 

@@ -1,6 +1,6 @@
 #include "stm32l0xx_hal.h"
 #include "logger.h"
-#include <array>
+#include "adc_test.h"
 
 extern ADC_HandleTypeDef hadc;
 
